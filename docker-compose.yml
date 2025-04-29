@@ -1,0 +1,84 @@
+services:
+  python-sma:
+    build:
+      context: ./python-sma
+    container_name: python-sma
+    profiles:
+      - python-service
+    volumes:
+      - ./python-sma:/app
+    command: ["python", "main.py"]
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: mb
+      DB_USER: mb
+      DB_PASSWORD: mb
+    networks:
+      - mb-sma
+
+  go-sma:
+    build:
+      context: ./go-sma
+    container_name: go-sma
+    profiles:
+      - go-service
+    volumes:
+      - ./go-sma:/app
+    command: ["./main"]
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: mb
+      DB_USER: mb
+      DB_PASSWORD: mb
+    ports:
+      - "8080:8080"
+    networks:
+      - mb-sma
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    profiles:
+      - db
+    volumes:
+      - database:/var/lib/postgresql/data
+      - database_backup:/backup
+    environment:
+      - POSTGRES_DB=mb
+      - POSTGRES_USER=mb
+      - POSTGRES_PASSWORD=mb
+    ports:
+      - "5432:5432"
+    networks:
+      - mb-sma
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    profiles:
+      - db
+    ports:
+      - "3010:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=mb@mb.com
+      - PGADMIN_DEFAULT_PASSWORD=mb
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    networks:
+      - mb-sma
+
+networks:
+  mb-sma:
+    external: false
+
+volumes:
+  database:
+    external: false
+  database_backup:
+    external: false
+  pgadmin:
+    external: false

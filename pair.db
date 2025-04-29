@@ -1,0 +1,10 @@
+CREATE TABLE pair (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pair VARCHAR(10) NOT NULL,
+    timestamp DATETIME NOT NULL,
+    mms_20 FLOAT,
+    mms_50 FLOAT,
+    mms_200 FLOAT
+);
+
+ALTER TABLE pair ADD CONSTRAINT unique_pair_timestamp UNIQUE (pair, timestamp);
