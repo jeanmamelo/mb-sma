@@ -104,7 +104,7 @@ go test ./... -v
 
 ## 🔍 Estratégia para incremento diário da tabela
 
-### Utilizar o Job python-sma/scripts/sma_increment_job.py
+### Utilizar o Job `python-sma/scripts/sma_increment_job.py`
 
 1. Buscar o maior `timestamp` da tabela atual.
 2. Coletar/gerar dados com `timestamp > maior timestamp atual`.
