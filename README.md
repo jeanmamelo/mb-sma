@@ -60,7 +60,9 @@ Deverá receber uma resposta parecida com essa:
         "timestamp": "2024-06-04T00:00:00Z",
         "mms": 354577.359651532
     },
-    ...
+    .
+    .
+    .
     {
         "timestamp": "2024-06-28T00:00:00Z",
         "mms": 353995.85744478303
@@ -114,11 +116,12 @@ go test ./... -v
 Agendar via cronjob do Kubernetes:
 ```yaml
 schedule: "0 23 * * *"
+```
 
 ---
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a licença [MIT](LICENSE).
+Este projeto está licenciado sob a licença MIT LICENSE.
 
 ---
