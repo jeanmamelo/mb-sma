@@ -30,19 +30,19 @@ cd mb-sma
 ### 2. Subir o banco de dados
 
 ```bash
-docker-compose --profile db up -d
+docker compose --profile db up -d
 ```
 
 ### 3. Rodar o serviço em Python para popular o banco de dados
 
 ```bash
-docker-compose --profile python-sma up
+docker compose --profile python-service up
 ```
 
 ### 4. Rodar o API server em Golang
 
 ```bash
-docker-compose --profile go-sma up
+docker compose --profile go-service up
 ```
 
 > Tudo pronto para testar a solução. ✅
